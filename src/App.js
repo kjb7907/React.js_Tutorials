@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShowProps from './components/ShowProps'
+import UsingState from './components/UsingState'
 
 
 
@@ -7,7 +7,7 @@ class App extends Component {
     render() {
     return (
       <div className="App">
-        <ShowProps name="React"/>
+        <UsingState/>
       </div>
     );
   }
