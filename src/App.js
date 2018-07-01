@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UsingState from './components/UsingState'
+import LifeCycle from './components/LifeCycle'
 
 
 
@@ -7,7 +7,7 @@ class App extends Component {
     render() {
     return (
       <div className="App">
-        <UsingState/>
+        <LifeCycle/>
       </div>
     );
   }
