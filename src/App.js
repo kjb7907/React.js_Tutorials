@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import ListRender from './components/ListRender'
+import FormBind from './components/FormBind'
 
 
 
 class App extends Component {
     render() {
     return (
-      <div className="App">
-        <ListRender/>
+      <div className="App" style={{textAlign: 'center'}}>
+        <FormBind/>
       </div>
     );
   }
