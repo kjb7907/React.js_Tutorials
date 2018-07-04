@@ -19,13 +19,13 @@ class InputTextBind extends Component {
                     onChange={this.handleChange}
                     name="name"
                 />
-                <div>{this.state.name}</div>
+                <div>name: {this.state.name}</div>
                 <input
                     value={this.state.age}
                     onChange={this.handleChange}
                     name="age"
                 />
-                <div>{this.state.age}</div>
+                <div>age: {this.state.age}</div>
             </form>
         );
     }
