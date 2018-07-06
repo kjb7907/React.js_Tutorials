@@ -33,12 +33,12 @@ class AddForm extends Component {
 class ItemTemplate extends Component {
     static defaultProps = {
         item: { id: '' , name: ''},
-        onChange: () => { console.warn('onChange')},
-        onRemove: () => { console.warn('onRemove')}
+        onRemove: () => { console.warn('onRemove')},
+        onUpdate: () => { console.warn('onUpdate')},
     }
     state = {
         isEdit: false,
-        text: ''
+        name: ''
     }
     handleChangeMode = ()=> {
         this.setState({
@@ -47,42 +47,56 @@ class ItemTemplate extends Component {
     }
     handleChange = (e)=>{
         this.setState({
-            text: e.target.value
+            name: e.target.value
         })
-    }
-    handleClick = ()=>{
-        const { item, onChange} = this.props;
-        const newItem = {
-            id: item.id,
-            name: this.state.text
-        }
-        onChange(item.id, newItem)
-        this.handleChangeMode()
     }
     handleRemove = () => {
         const { item, onRemove } = this.props;
         onRemove(item.id)
     }
+    componentDidUpdate(prevProps, prevState) {
+        // 수정버튼 or 확인버튼을 클릭하면 state.sEdit 이 토글되고 render() 가 재 호출되기 전
+        // 일반상태- > 수정상태의 경우 props의 name을 state의 name에 넣어준다
+        // 수정상태 -> 일반상태의 경우 state의 name을 props의 이벤트에 파라미터로 넘긴다.
+
+        const { item, onUpdate } = this.props;
+        // 일반상태 -> 수정상태 : isEdit true -> false
+        if(!prevState.isEdit && this.state.isEdit) {
+            this.setState({
+                name: item.name,
+            })
+        }
+        // 수정상태 -> 일반상태 : isEdit false -> true
+        if (prevState.isEdit && !this.state.isEdit) {
+            onUpdate(item.id, {
+                name: this.state.name,
+            });
+        }
+    }
     render() {
-        const {name} = this.props.item;
-        const {isEdit, text} = this.state;
-        return (
-            <div>
-                {isEdit
-                    ?
-                    <div>
-                        <input type="text" value={text} onChange={this.handleChange}/>
-                        <button onClick={this.handleClick}>확인</button>
-                    </div>
-                    :
-                    <div>
-                        {name}
-                        <button onClick={this.handleChangeMode}>수정</button>
-                        <button onClick={this.handleRemove}>삭제</button>
-                    </div>
-                }
-            </div>
-        );
+        const {isEdit} = this.state;
+
+        // 수정상태
+        if(isEdit){
+            const {name} = this.state;
+            return(
+                <div>
+                    <input type="text" value={name} onChange={this.handleChange}/>
+                    <button onClick={this.handleChangeMode}>확인</button>
+                </div>
+            )
+        }
+        // 일반상태
+        else{
+            const {name} = this.props.item;
+            return(
+                <div>
+                    {name}
+                    <button onClick={this.handleChangeMode}>수정</button>
+                    <button onClick={this.handleRemove}>삭제</button>
+                </div>
+            )
+        }
     }
 }
 
@@ -103,7 +117,6 @@ class ListRender extends Component {
             }
         ]
     }
-
     handleCreate = (data) => {
         const { userList } = this.state;
         this.setState({
@@ -117,25 +130,21 @@ class ListRender extends Component {
         })
     }
     handleUpdate = (id, data) => {
+        console.log(data)
         const { userList } = this.state;
         this.setState({
             userList: userList.map(
                 user => id === user.id
-                    ? { ...user, ...data } // 새 객체를 만들어서 기존의 값과 전달받은 data 을 덮어씀
-                    : user // 기존의 값을 그대로 유지
+                    ? { ...user, ...data }
+                    : user
             )
         })
     }
-
-    componentDidMount() {
-
-    }
-
     render() {
         const {userList} = this.state
         const itemList = userList.map(item=>
             (<ItemTemplate key={item.id} item={item}
-                           onChange={this.handleUpdate}
+                           onUpdate={this.handleUpdate}
                            onRemove={this.handleRemove}/>)
         )
         return (
