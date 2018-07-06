@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListRender from './components/ListRender'
+import ListCRUD from './components/ListCRUD'
 
 
 
@@ -7,7 +7,7 @@ class App extends Component {
     render() {
     return (
       <div className="App" style={{textAlign: 'center'}}>
-        <ListRender/>
+        <ListCRUD/>
       </div>
     );
   }
