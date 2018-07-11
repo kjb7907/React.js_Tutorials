@@ -117,22 +117,33 @@ class ListRender extends Component {
             }
         ]
     }
+    // Array에 신규 Object 추가
     handleCreate = (data) => {
+        // 파라미터로 받은 데이터를 Array에 추가
         const { userList } = this.state;
         this.setState({
+            // push가 아닌 concat 함수를 사용해야함
             userList: userList.concat({ id: userList[userList.length-1].id+1, ...data })
         })
     }
+    // 삭제 처리
     handleRemove = (id) => {
+        // 파라미터로 받은 id와 Array의 Object의 id와 일치하면
+        // 해당 id와 일치하는 object를 제거하고 state에 반영
         const { userList } = this.state;
         this.setState({
+            // filter 함수는 Array의 원소중에 조건에 일치하는 원소만으로 새로운 Array를 만들어 리턴해줌
             userList: userList.filter(user => user.id !== id)
         })
     }
+    // 수정 처리
     handleUpdate = (id, data) => {
-        console.log(data)
+        // 파라미터로 받은 id와 Array의 Object의 id와 일치하면
+        // 해당 id와 일치하는 object를 수정하고 state에 반영
         const { userList } = this.state;
         this.setState({
+            // map 함수는 forEach처럼 Array의 길이만큼 callback을 실행하여 처리된 Array를 리턴해줌
+            // 파라미터로 받은 id와 일치하는 Object를 찾아 기존의 데이터에 새로운 데이터를 덮어쓴다.
             userList: userList.map(
                 user => id === user.id
                     ? { ...user, ...data }
