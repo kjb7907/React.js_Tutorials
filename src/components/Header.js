@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 
 
 
-class Content extends Component {
+class Header extends Component {
     render(){
         return (
             <div>
-                <h2>Content</h2>
+                <h2>header</h2>
             </div>
         );
     }
 }
 
 
-
-export default Content;
+export default Header ;

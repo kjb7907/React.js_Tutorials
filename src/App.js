@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListCRUD from './components/ListCRUD'
+import Optimize from './components/Optimize'
 
 
 
@@ -7,7 +7,7 @@ class App extends Component {
     render() {
     return (
       <div className="App" style={{textAlign: 'center'}}>
-        <ListCRUD/>
+        <Optimize/>
       </div>
     );
   }
