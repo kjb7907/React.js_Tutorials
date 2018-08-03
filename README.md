@@ -8,6 +8,6 @@
 - 리스트 렌더링
 - Form 바인딩
 - 리스트 CRUD
-
+- 컴포넌트 최적화 & 필터링
 - router
 - redux

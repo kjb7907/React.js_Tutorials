@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class ShowProps extends Component {
+class Props extends Component {
     render() {
         let style = {
             textAlign: 'center'
@@ -17,4 +17,4 @@ class ShowProps extends Component {
     }
 }
 
-export default ShowProps;
+export default Props;

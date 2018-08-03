@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class UsingState extends Component {
+class State extends Component {
 
     constructor(props) {
         super(props);
@@ -36,4 +36,4 @@ class UsingState extends Component {
     }
 }
 
-export default UsingState ;
+export default State ;
