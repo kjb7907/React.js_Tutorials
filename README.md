@@ -9,5 +9,6 @@
 - Form 바인딩
 - 리스트 CRUD
 - 컴포넌트 최적화 & 필터링
+- 함수형 컴포넌트
 - router
 - redux
