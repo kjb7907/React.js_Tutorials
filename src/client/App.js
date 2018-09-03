@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import  Menu  from '../components/Menu';
-import { Main, Page1, Pages, Basic } from 'pages';
+import { Main, Page1, Pages, Basic, Page4 } from 'pages';
 
 
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
                 </Switch>
                 <Route path="/Pages" component={Pages}/>
                 <Route path="/basic" component={Basic}/>
+                <Route path="/Page4" component={Page4}/>
             </div>
         );
     }
